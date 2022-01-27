@@ -15,7 +15,7 @@ after_success:
   - docker build -t dockertravis/multi-worker ./worker
 
 #Docker login
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_IDs" --password-stdin
 #Push images to docker hub
   - docker push dockertravis/multi-client
   - docker push dockertravis/multi-nginx
