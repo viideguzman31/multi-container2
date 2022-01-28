@@ -6,7 +6,7 @@ before_install:
   - docker build -t dockertravis/docker-react -f ./client/Dockerfile.dev ./client
 
 script:
-  -  docker run -e CI=true dockertravis/docker-react npm test
+  -  docker run -e CI=true dockertravis/docker-react npm install react-scripts --save
 
 after_success:
   - docker build -t dockertravis/multi-client ./client
