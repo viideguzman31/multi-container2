@@ -3,10 +3,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t dockertravis2/docker-react -f ./client/Dockerfile.dev ./client
+  - docker build -t dockertravis/docker-react -f ./client/Dockerfile.dev ./client
 
 script:
-  -  docker run -e CI=true dockertravis2/docker-react npm install react-scripts --save
+  -  docker run -e CI=true dockertravis/docker-react npm test
 
 after_success:
   - docker build -t dockertravis/multi-client ./client
