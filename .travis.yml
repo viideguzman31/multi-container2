@@ -5,24 +5,25 @@ services:
   - docker
 
 before_install:
-  - docker build -t dockertravis/docker-react -f ./client/Dockerfile.dev ./client
+  - docker build -t viideguzman/docker-react -f ./client/Dockerfile.dev ./client
 
 script:
-  -  docker run -e CI=true dockertravis/docker-react npm install react-scripts --save
+  -  docker run -e CI=true viideguzman/docker-react npm install react-scripts --save
 
 after_success:
-  - docker build -t dockertravis/multi-client ./client
-  - docker build -t dockertravis/multi-nginx ./nginx
-  - docker build -t dockertravis/multi-server ./server
-  - docker build -t dockertravis/multi-worker ./worker
+  - docker build -t viideguzman/multi-client ./client
+  - docker build -t viideguzman/multi-nginx ./nginx
+  - docker build -t viideguzman/multi-server ./server
+  - docker build -t viideguzman/multi-worker ./worker
 
+  - docker logout
 #Docker login
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 #Push images to docker hub
-  - docker push dockertravis/multi-client
-  - docker push dockertravis/multi-nginx
-  - docker push dockertravis/multi-server
-  - docker push dockertravis/multi-worker
+  - docker push viideguzman/multi-client
+  - docker push viideguzman/multi-nginx
+  - docker push viideguzman/multi-server
+  - docker push viideguzman/multi-worker
 #deploy:
 #  provider: elasticbeanstalk
 #  region: "us-east-2"
